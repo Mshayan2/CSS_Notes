@@ -127,6 +127,29 @@ body::after {
     -webkit-text-fill-color: transparent;
 }
 
+.close-sidebar-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-sidebar-btn:hover {
+    color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .sidebar-nav {
     flex: 1;
     overflow-y: auto;
@@ -1085,6 +1108,10 @@ body::after {
     
     .sidebar:not(.collapsed) {
         transform: translateX(0);
+    }
+
+    .close-sidebar-btn {
+        display: flex;
     }
 
     /* Blur and dim backdrop when sidebar is open */

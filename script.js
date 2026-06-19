@@ -102,6 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('collapsed');
     });
 
+    // Close Sidebar (Inside Sidebar Header on Mobile)
+    const closeSidebarBtn = document.getElementById('close-sidebar');
+    if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('collapsed');
+        });
+    }
+
+    // Close sidebar on mobile when clicking anywhere in the main container
+    const presentationContainer = document.querySelector('.presentation-container');
+    if (presentationContainer) {
+        presentationContainer.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.classList.contains('collapsed')) {
+                if (!e.target.closest('#toggle-sidebar') && !e.target.closest('#sidebar')) {
+                    sidebar.classList.add('collapsed');
+                }
+            }
+        });
+    }
+
     // 3. KEYBOARD LISTENERS
     document.addEventListener('keydown', (e) => {
         // Avoid skipping slides when user is typing in interactive form elements
