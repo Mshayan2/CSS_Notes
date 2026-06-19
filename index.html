@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering CSS: Interactive Course Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3L8.5 25.5L16 29L23.5 25.5L26 3H6Z" fill="#00e5ff"/>
+                        <path d="M23.8 6.5H16V13H23.2L22.6 19.5L16 21.5L9.4 19.5L9 15H12L12.2 17.5L16 18.5L19.8 17.5L20.2 13H8.8L8 4.5H24.2L23.8 6.5Z" fill="#080b11"/>
+                    </svg>
+                </div>
+                <h1 class="sidebar-title">CSS Masterclass</h1>
+            </div>
+            <nav class="sidebar-nav" id="sidebar-nav"></nav>
+        </aside>
+
+        <!-- Main Slide Viewport -->
+        <main class="presentation-container">
+            <header class="presentation-header">
+                <div class="header-left">
+                    <button class="toggle-sidebar-btn" id="toggle-sidebar">📁 Index</button>
+                    <div class="course-badge">CSS Notes Course</div>
+                </div>
+                <div class="header-right">
+                    <div class="shortcut-tips">Use <span class="shortcut-key">◀</span> / <span class="shortcut-key">▶</span> Keys (or Space / Backspace)</div>
+                </div>
+            </header>
+
+            <div class="slides-viewport" id="slides-viewport">
+                <!-- Slide 1: Welcome Slide -->
+                <section class="slide active" id="slide-1">
+                    <div class="title-slide-content">
+                        <div class="title-badge">Interactive Learning Deck</div>
+                        <h1 class="main-title">Mastering CSS Layouts &amp; Styling</h1>
+                        <p class="main-subtitle">A comprehensive, visual, and simulator-driven guide to Modern Web Styling. Based on structured curriculum notes.</p>
+                        <div class="start-hint">Press <span class="shortcut-key">▶</span> or click <strong>Next</strong> to start the journey</div>
+                    </div>
+                </section>
+
+                <!-- Slide 2: CSS Overview & History (Widget A) -->
+                <section class="slide" id="slide-2">
+                    <h2 class="slide-title">What is CSS &amp; History</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="info-block">
+                            <p><strong>Cascading Style Sheets (CSS)</strong> is the design sheet language used to control the visual presentation of web documents written in HTML. It coordinates color grids, layouts, typography, shapes, and response animations.</p>
+                            <div class="card-panel">
+                                <h3>The Cascading Mechanism</h3>
+                                <p>When multiple CSS rules conflict, the browser resolves them using three primary factors:</p>
+                                <ul>
+                                    <li><strong>Specificity:</strong> Calculation of selector weight (ID > Class > Element).</li>
+                                    <li><strong>Inheritance:</strong> Properties that automatically pass down from parents to children (e.g. <code>color</code>, <code>font-family</code>).</li>
+                                    <li><strong>Order of Appearance:</strong> Later rules override earlier ones if specificity is equal.</li>
+                                    <li><strong>Importance (!important):</strong> Overrides all other declarations (use sparingly).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget-container">
+                            <h3 class="widget-title">Widget A: CSS History Timeline</h3>
+                            <p class="widget-desc">Click each era node to inspect the evolutionary highlights of CSS:</p>
+                            <div class="timeline-nodes">
+                                <button class="timeline-node active" onclick="selectTimeline(1996, this)">1996 (CSS 1)</button>
+                                <button class="timeline-node" onclick="selectTimeline(1998, this)">1998 (CSS 2)</button>
+                                <button class="timeline-node" onclick="selectTimeline(2005, this)">2005 (CSS 3)</button>
+                                <button class="timeline-node" onclick="selectTimeline(2020, this)">Modern (CSS 4+)</button>
+                            </div>
+                            <div class="timeline-detail-panel card-panel" id="timeline-detail">
+                                <h4>CSS 1.0 (1996)</h4>
+                                <p>The initial W3C recommendation. Offered basic properties for fonts, background colors, margins, text alignment, and simple lists.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Ways to include CSS & Folder Structure (Widget B & C) -->
+                <section class="slide" id="slide-3">
+                    <h2 class="slide-title">Including CSS &amp; Project Structure</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="widget-container">
+                            <h3 class="widget-title">Widget B: Ways to Add CSS</h3>
+                            <div class="tabs-header">
+                                <button class="tab-btn active" onclick="switchTab('inline-tab', this)">Inline Styles</button>
+                                <button class="tab-btn" onclick="switchTab('internal-tab', this)">Internal Style Tag</button>
+                                <button class="tab-btn" onclick="switchTab('external-tab', this)">External File</button>
+                            </div>
+                            <div class="tab-content active" id="inline-tab">
+                                <p>Applied directly within the HTML element using the <code>style</code> attribute. Highly discouraged for large scale projects as it duplicates markup and bypasses caching benefits.</p>
+                                <div class="code-container">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    <pre><code>&lt;p style="<span class="keyword">color</span>: <span class="string">#ff0055</span>; <span class="keyword">font-size</span>: <span class="string">18px</span>;"&gt;Hello World&lt;/p&gt;</code></pre>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="internal-tab">
+                                <p>Placed within a <code>&lt;style&gt;</code> block inside the HTML <code>&lt;head&gt;</code>. Ideal for single-page files or isolated styling requirements.</p>
+                                <div class="code-container">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    <pre><code>&lt;head&gt;
+  &lt;style&gt;
+    <span class="function">p</span> {
+      <span class="keyword">color</span>: <span class="string">cyan</span>;
+      <span class="keyword">line-height</span>: <span class="string">1.6</span>;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="external-tab">
+                                <p>Written in a separate <code>.css</code> stylesheet and linked via the <code>&lt;link&gt;</code> tag. Best practice for maintainable, multi-page websites as it allows resource caching.</p>
+                                <div class="code-container">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    <pre><code>&lt;head&gt;
+  &lt;link rel="<span class="keyword">stylesheet</span>" href="<span class="string">styles.css</span>"&gt;
+&lt;/head&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget-container">
+                            <h3 class="widget-title">Widget C: Project Directory Tree</h3>
+                            <p class="widget-desc">Click directory files to inspect their standard role:</p>
+                            <div class="file-explorer card-panel">
+                                <div class="file-item folder" onclick="selectFileExplorer('project-root', this)">📁 project-root/</div>
+                                <div class="file-item file level-1" onclick="selectFileExplorer('index-html', this)">📄 index.html</div>
+                                <div class="file-item folder level-1" onclick="selectFileExplorer('css-folder', this)">📁 css/</div>
+                                <div class="file-item file level-2" onclick="selectFileExplorer('main-css', this)">📄 main.css</div>
+                                <div class="file-item folder level-1" onclick="selectFileExplorer('assets-folder', this)">📁 assets/</div>
+                                <div class="file-item file level-2" onclick="selectFileExplorer('logo-svg', this)">📄 logo.svg</div>
+                            </div>
+                            <div class="explorer-detail-panel card-panel" id="explorer-detail">
+                                <h4>Select a file/folder above</h4>
+                                <p>Click on any folder node or stylesheet item to read details about where your code belongs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: CSS Selectors -->
+                <section class="slide" id="slide-4">
+                    <h2 class="slide-title">CSS Selectors &amp; Combinators</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="info-block">
+                            <p>Selectors designate which HTML elements receive specific rules. Mastering them prevents styling collision.</p>
+                            <div class="card-panel">
+                                <h3>Basic Selectors</h3>
+                                <ul>
+                                    <li><strong>Element Selector:</strong> Targets tags directly (e.g. <code>p</code>, <code>h1</code>). Applies globally.</li>
+                                    <li><strong>Class Selector:</strong> Targets matching class attributes (prefixed with <code>.</code>, e.g. <code>.card</code>). Reusable on multiple elements.</li>
+                                    <li><strong>ID Selector:</strong> Targets a single element (prefixed with <code>#</code>, e.g. <code>#main-header</code>). Must be unique to a page.</li>
+                                    <li><strong>Universal Selector (*):</strong> Selects all elements. Commonly used for css resets to zero out margins and padding.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Combinators &amp; Grouping</h3>
+                            <ul>
+                                <li><strong>Grouping Selector:</strong> Combines selectors separated by commas (e.g. <code>h1, h2, p</code>) to share a common code declaration block.</li>
+                                <li><strong>Descendant Selector (space):</strong> Selects children nested anywhere inside a parent element (e.g. <code>.card p</code>).</li>
+                                <li><strong>Child Selector (&gt;):</strong> Selects elements that are direct children of the parent (e.g. <code>.card > h2</code>).</li>
+                                <li><strong>Adjacent Sibling Selector (+):</strong> Targets the element immediately following another sibling element (e.g. <code>h1 + p</code>).</li>
+                            </ul>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="comment">/* Selector Combinator Example */</span>
+<span class="function">.card > p</span> {
+  <span class="keyword">color</span>: <span class="string">#a855f7</span>;
+  <span class="keyword">margin-bottom</span>: <span class="string">12px</span>;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5: Colors, Fonts & Units -->
+                <section class="slide" id="slide-5">
+                    <h2 class="slide-title">Colors, Typography &amp; Units</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>Color Definition Formats</h3>
+                            <p>CSS supports several syntax patterns to declare colors:</p>
+                            <ul>
+                                <li><strong>Hexadecimal:</strong> 6 characters prefixed with <code>#</code> representing Red, Green, Blue levels (e.g. <code>#00e5ff</code>). You can append 2 characters for opacity (e.g. <code>#00e5ff80</code> for 50% opacity).</li>
+                                <li><strong>RGB &amp; RGBA:</strong> Red, Green, Blue levels from 0 to 255 (e.g. <code>rgb(0, 229, 255)</code>). RGBA adds a fourth transparency alpha value between 0.0 and 1.0 (e.g. <code>rgba(0, 229, 255, 0.5)</code>).</li>
+                                <li><strong>HSL &amp; HSLA:</strong> Hue (0-360 degrees), Saturation (0-100%), and Lightness (0-100%). Great for cohesive theme creation.</li>
+                            </ul>
+                            <div class="color-demo-swatches">
+                                <div class="swatch" style="background-color: #00e5ff;">#00e5ff</div>
+                                <div class="swatch" style="background-color: rgb(168, 85, 247);">RGB</div>
+                                <div class="swatch" style="background-color: rgba(0, 229, 255, 0.25);">RGBA 25%</div>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>CSS Measurement Units</h3>
+                            <ul>
+                                <li><strong>px (Pixels):</strong> Absolute physical screen dots. Fixed size, does not scale with browser font changes.</li>
+                                <li><strong>em:</strong> Relative to the font size of its parent element. Compounds when nested.</li>
+                                <li><strong>rem (Root em):</strong> Relative to the root <code>&lt;html&gt;</code> element's font size. Safer and highly recommended for layout consistency and accessibility.</li>
+                                <li><strong>% (Percentage):</strong> Relative to parent size parameters.</li>
+                                <li><strong>vw / vh (Viewport Width/Height):</strong> Equal to 1% of the viewport width or height. Useful for full-screen banners.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6: The Box Model Simulator (Widget D) -->
+                <section class="slide" id="slide-6">
+                    <h2 class="slide-title">The CSS Box Model</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="widget-container">
+                            <h3 class="widget-title">Widget D: Box Model Simulator</h3>
+                            <p class="widget-desc">Tweak sizes and watch the nested visual box recalculate live:</p>
+                            
+                            <div class="control-group">
+                                <label>Width: <span id="val-width">180px</span></label>
+                                <input type="range" id="input-width" min="100" max="250" value="180" oninput="updateBoxModel()">
+                            </div>
+                            <div class="control-group">
+                                <label>Padding: <span id="val-padding">20px</span></label>
+                                <input type="range" id="input-padding" min="0" max="40" value="20" oninput="updateBoxModel()">
+                            </div>
+                            <div class="control-group">
+                                <label>Border: <span id="val-border">4px</span></label>
+                                <input type="range" id="input-border" min="0" max="15" value="4" oninput="updateBoxModel()">
+                            </div>
+                            <div class="control-group">
+                                <label>Margin: <span id="val-margin">15px</span></label>
+                                <input type="range" id="input-margin" min="0" max="40" value="15" oninput="updateBoxModel()">
+                            </div>
+                            <div class="control-group">
+                                <label>Box Sizing Mode:</label>
+                                <select id="input-boxsizing" onchange="updateBoxModel()">
+                                    <option value="content-box">content-box (Default)</option>
+                                    <option value="border-box" selected>border-box (Modern Standard)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="widget-container box-visual-container">
+                            <div class="box-model-visual" id="visual-margin-box">
+                                <span class="box-label">Margin</span>
+                                <div id="visual-border-box">
+                                    <span class="box-label">Border</span>
+                                    <div id="visual-padding-box">
+                                        <span class="box-label">Padding</span>
+                                        <div id="visual-content-box">
+                                            <span class="box-label">Content</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-calc-report card-panel">
+                                <strong>Calculated Rendered Width:</strong> <span id="box-calculated-width">228px</span>
+                                <br>
+                                <small id="box-formula-desc">Width (180) + Padding (20*2) + Border (4*2) = 228px</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7: Backgrounds & Borders -->
+                <section class="slide" id="slide-7">
+                    <h2 class="slide-title">Backgrounds &amp; Borders</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>Background Properties</h3>
+                            <ul>
+                                <li><strong>background-color:</strong> Fills element background (e.g. solid color, linear-gradients, or radial-gradients).</li>
+                                <li><strong>background-image:</strong> Loads image URL assets inside the container viewport.</li>
+                                <li><strong>background-repeat:</strong> Handles wrapping tiling behaviors (<code>no-repeat</code>, <code>repeat-x</code>, <code>repeat-y</code>).</li>
+                                <li><strong>background-size:</strong> Adjusts image sizing behavior:
+                                    <ul>
+                                        <li><code>cover</code>: scales to cover element (some cropping may occur).</li>
+                                        <li><code>contain</code>: scales to fit element without cropping.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>background-position:</strong> Positions image (e.g. <code>center</code>, <code>top right</code>).</li>
+                            </ul>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="function">.hero-banner</span> {
+  <span class="keyword">background-image</span>: <span class="string">url('bg.jpg')</span>;
+  <span class="keyword">background-size</span>: <span class="string">cover</span>;
+  <span class="keyword">background-position</span>: <span class="string">center</span>;
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Borders &amp; Corners</h3>
+                            <ul>
+                                <li><strong>border:</strong> Shorthand syntax combining width, style, and color: <code>border: 2px solid #fff;</code>.</li>
+                                <li><strong>border-style:</strong> Border patterns (<code>solid</code>, <code>dashed</code>, <code>dotted</code>, <code>double</code>).</li>
+                                <li><strong>border-radius:</strong> Rounds corners (e.g., <code>8px</code> for buttons, <code>50%</code> for circular avatars). Takes up to 4 values for individual corners clockwise.</li>
+                            </ul>
+                            <div class="border-radius-examples">
+                                <div class="radius-box" style="border-radius: 4px;">4px</div>
+                                <div class="radius-box" style="border-radius: 16px;">16px</div>
+                                <div class="radius-box" style="border-radius: 50%;">50%</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 8: Display & Positioning -->
+                <section class="slide" id="slide-8">
+                    <h2 class="slide-title">Display &amp; Positioning Styles</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>Display Properties</h3>
+                            <p>Determines how an element behaves in the document layout flow:</p>
+                            <ul>
+                                <li><strong>block:</strong> Spans full parent width. Starts on a new line (e.g. <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, headings).</li>
+                                <li><strong>inline:</strong> Fits content size only. Cannot have width/height or top/bottom margins (e.g. <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>).</li>
+                                <li><strong>inline-block:</strong> Flows like inline but allows setting custom width/height and padding.</li>
+                                <li><strong>none:</strong> Removes the element entirely from the document layout flow. Contrast with <code>visibility: hidden</code> which hides the element but keeps its layout space.</li>
+                            </ul>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Positioning Methods</h3>
+                            <ul>
+                                <li><strong>static:</strong> Default flow. Follows natural HTML arrangement.</li>
+                                <li><strong>relative:</strong> Offset from its normal position without altering surrounding elements. Acts as reference for absolute positioned children.</li>
+                                <li><strong>absolute:</strong> Positioned relative to the nearest positioned ancestor (relative, absolute, or fixed). Removed from normal flow.</li>
+                                <li><strong>fixed:</strong> Anchored relative to the browser viewport window. Stays fixed during scroll.</li>
+                                <li><strong>sticky:</strong> Hybrid. Acts relative until a threshold (e.g. <code>top: 0</code>) is reached during scrolling, then locks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 9: Flexbox Playground (Widget D & E) -->
+                <section class="slide" id="slide-9">
+                    <h2 class="slide-title">CSS Flexbox Layout</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="widget-container">
+                            <h3 class="widget-title">Widget D: Flexbox Playground</h3>
+                            <p class="widget-desc">Change parent flex properties to position child boxes:</p>
+                            
+                            <div class="control-group">
+                                <label>flex-direction:</label>
+                                <select id="flex-direction" onchange="updateFlexboxPlayground()">
+                                    <option value="row" selected>row</option>
+                                    <option value="row-reverse">row-reverse</option>
+                                    <option value="column">column</option>
+                                    <option value="column-reverse">column-reverse</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label>justify-content:</label>
+                                <select id="flex-justify" onchange="updateFlexboxPlayground()">
+                                    <option value="flex-start" selected>flex-start</option>
+                                    <option value="center">center</option>
+                                    <option value="flex-end">flex-end</option>
+                                    <option value="space-between">space-between</option>
+                                    <option value="space-around">space-around</option>
+                                    <option value="space-evenly">space-evenly</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label>align-items:</label>
+                                <select id="flex-align" onchange="updateFlexboxPlayground()">
+                                    <option value="stretch" selected>stretch (Default)</option>
+                                    <option value="flex-start">flex-start</option>
+                                    <option value="center">center</option>
+                                    <option value="flex-end">flex-end</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label>gap:</label>
+                                <select id="flex-gap" onchange="updateFlexboxPlayground()">
+                                    <option value="0px">0px</option>
+                                    <option value="10px" selected>10px</option>
+                                    <option value="20px">20px</option>
+                                    <option value="30px">30px</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="widget-container flex-playground-visual">
+                            <div class="flex-sandbox" id="flex-sandbox">
+                                <div class="flex-item-box">1</div>
+                                <div class="flex-item-box">2</div>
+                                <div class="flex-item-box">3</div>
+                            </div>
+                            
+                            <h3 class="widget-title">Widget E: CSS Code &amp; Log Console</h3>
+                            <div class="log-console" id="log-console">
+                                <pre><code class="console-output" id="console-output">/* Interactive Flexbox Styles */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 10px;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 10: CSS Grid Layout -->
+                <section class="slide" id="slide-10">
+                    <h2 class="slide-title">CSS Grid Layout</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="info-block">
+                            <p><strong>CSS Grid</strong> is a powerful 2-dimensional layout engine. While Flexbox is ideal for aligning items along a single axis (row OR column), Grid is perfect for arranging columns and rows simultaneously.</p>
+                            <div class="card-panel">
+                                <h3>Key Properties</h3>
+                                <ul>
+                                    <li><code>grid-template-columns</code>: Defines number and size of columns (e.g. <code>1fr 1fr 1fr</code> for three equal columns).</li>
+                                    <li><code>grid-template-rows</code>: Defines heights of grid rows.</li>
+                                    <li><code>gap</code>: Gutters spacing between rows and columns.</li>
+                                    <li><code>grid-column / grid-row</code>: Tells child items how to span across columns or rows (e.g. <code>1 / 3</code>).</li>
+                                    <li><code>repeat() &amp; minmax()</code>: Create responsive grids dynamically: <code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</code>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Grid Columns Mockup (3 Columns)</h3>
+                            <div class="mock-grid-layout">
+                                <div class="grid-item">1</div>
+                                <div class="grid-item">2</div>
+                                <div class="grid-item">3</div>
+                                <div class="grid-item span-2">Spanned (1 / 3)</div>
+                                <div class="grid-item">5</div>
+                            </div>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="function">.grid-container</span> {
+  <span class="keyword">display</span>: <span class="string">grid</span>;
+  <span class="keyword">grid-template-columns</span>: <span class="string">1fr 1fr 1fr</span>;
+  <span class="keyword">gap</span>: <span class="string">12px</span>;
+}
+<span class="function">.span-2</span> {
+  <span class="keyword">grid-column</span>: <span class="string">1 / 3</span>;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 11: Pseudo Classes & Elements -->
+                <section class="slide" id="slide-11">
+                    <h2 class="slide-title">Pseudo-classes &amp; Pseudo-elements</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>Pseudo-classes (Single Colon <code>:</code>)</h3>
+                            <p>Used to style elements in specific states, like cursor hovers or when form inputs are selected:</p>
+                            <ul>
+                                <li><code>:hover</code> - Matches when the user hovers over the element.</li>
+                                <li><code>:focus</code> - Matches when an element receives focus (e.g. clicking text fields).</li>
+                                <li><code>:active</code> - Active at the exact moment of mouse click.</li>
+                                <li><code>:nth-child(n)</code> - Matches specific child index patterns (e.g. <code>:nth-child(odd)</code>, <code>:nth-child(3)</code>).</li>
+                            </ul>
+                            <div class="interactive-button-container">
+                                <button class="hover-test-btn">Hover &amp; Hold Me</button>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Pseudo-elements (Double Colon <code>::</code>)</h3>
+                            <p>Used to style specific parts of an element, or inject decorative content without HTML code changes:</p>
+                            <ul>
+                                <li><code>::before</code> - Inserts generated content before the actual content of the selector. Must include the <code>content: ""</code> property.</li>
+                                <li><code>::after</code> - Inserts content after the actual content of the selector.</li>
+                                <li><code>::placeholder</code> - Styles the text inside empty inputs.</li>
+                            </ul>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="function">h1::before</span> {
+  <span class="keyword">content</span>: <span class="string">"🔥 "</span>;
+  <span class="keyword">color</span>: <span class="string">orange</span>;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 12: Transitions & Transforms -->
+                <section class="slide" id="slide-12">
+                    <h2 class="slide-title">Transitions &amp; Transforms</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>CSS Transitions</h3>
+                            <p>Smoothly changes style values over a given duration, preventing instant jarring snaps.</p>
+                            <ul>
+                                <li><code>transition-property</code>: Target values to watch (e.g., <code>background-color</code>, <code>transform</code>, or <code>all</code>).</li>
+                                <li><code>transition-duration</code>: Timing span (e.g. <code>0.3s</code>, <code>500ms</code>).</li>
+                                <li><code>transition-timing-function</code>: Velocity curve (<code>ease-in-out</code>, <code>linear</code>, or custom <code>cubic-bezier</code>).</li>
+                                <li><code>transition-delay</code>: Wait time before starting animation.</li>
+                            </ul>
+                        </div>
+                        <div class="card-panel transform-interactive-block">
+                            <h3>CSS 2D Transforms</h3>
+                            <p>Hover over the cards below to see visual manipulations in action:</p>
+                            <div class="transform-cards-flex">
+                                <div class="transform-card scale-hover">
+                                    <span>Scale</span>
+                                </div>
+                                <div class="transform-card rotate-hover">
+                                    <span>Rotate</span>
+                                </div>
+                                <div class="transform-card translate-hover">
+                                    <span>Translate</span>
+                                </div>
+                            </div>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="function">.card:hover</span> {
+  <span class="keyword">transform</span>: <span class="string">rotate(10deg) scale(1.1)</span>;
+  <span class="keyword">transition</span>: <span class="string">transform 0.3s ease</span>;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 13: Responsive Design & Media Queries -->
+                <section class="slide" id="slide-13">
+                    <h2 class="slide-title">Responsive Design &amp; Media Queries</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="info-block">
+                            <p>Responsive web design ensures that websites display correctly on all screen resolutions, viewport widths, and devices (mobile, tablet, desktop).</p>
+                            <div class="card-panel">
+                                <h3>Common Responsive Breakpoints</h3>
+                                <ul>
+                                    <li><strong>Mobile Devices:</strong> <code>max-width: 480px</code></li>
+                                    <li><strong>Tablets &amp; Phablets:</strong> <code>max-width: 768px</code></li>
+                                    <li><strong>Laptops / Small Desktops:</strong> <code>min-width: 1024px</code></li>
+                                </ul>
+                                <p><strong>Mobile-First Design:</strong> Writing default styles for small screens first, then wrapping larger desktop overrides inside <code>@media (min-width: 768px)</code>. Recommended for performance.</p>
+                            </div>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Media Query Syntax</h3>
+                            <p>Styles inside this bracket apply only when conditions are met:</p>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre><code><span class="comment">/* Mobile-First Adaptations */</span>
+<span class="keyword">@media</span> only screen and (<span class="keyword">max-width</span>: <span class="string">768px</span>) {
+  <span class="function">.grid-container</span> {
+    <span class="keyword">grid-template-columns</span>: <span class="string">1fr</span>; <span class="comment">/* stack items */</span>
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 14: Final Mini-Project & Summary -->
+                <section class="slide" id="slide-14">
+                    <h2 class="slide-title">Final Project &amp; Summary</h2>
+                    <div class="slide-content grid-2col">
+                        <div class="card-panel">
+                            <h3>Course Summary</h3>
+                            <p>Congratulations! You have completed CSS core styling lessons:</p>
+                            <ul>
+                                <li>Ways to link stylesheets and write comments.</li>
+                                <li>Selectors, specificity scores, and inheritance logic.</li>
+                                <li>The CSS Box Model spacing rules.</li>
+                                <li>Layout systems: Flexbox for rows/columns, CSS Grid for grids.</li>
+                                <li>Styling pseudo selectors, transitions, and media queries.</li>
+                            </ul>
+                        </div>
+                        <div class="card-panel">
+                            <h3>Mini-Project Assignment</h3>
+                            <p>Build a <strong>Responsive Profile or Product Card Page</strong> using everything learned, incorporating: hover scale zooms, CSS variables, grid cards, and mobile stack layouts.</p>
+                            <div class="boilerplate-block">
+                                <h4>Copy HTML Boilerplate:</h4>
+                                <div class="code-container">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="card"&gt;
+    &lt;h2&gt;Product Title&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer Navigation Controls -->
+            <footer class="presentation-footer">
+                <button class="nav-control-btn" id="prev-btn">◀ Previous</button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <span class="slide-indicator" id="slide-indicator">Slide 1 / 14</span>
+                <button class="nav-control-btn" id="next-btn">Next ▶</button>
+            </footer>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
